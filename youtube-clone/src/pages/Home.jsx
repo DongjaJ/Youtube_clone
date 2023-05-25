@@ -1,5 +1,5 @@
 import React from 'react';
-import VideoGallery from '../components/VideoGallery';
+import VideoGallery, { GalleryContainer } from '../components/VideoGallery';
 import { usePopularListQuery } from '../components/VideoGallery';
 
 export default function Home() {
@@ -8,5 +8,9 @@ export default function Home() {
   if (isLoading) return <p>Loading...</p>;
 
   if (error) return <p>{error}</p>;
-  return <VideoGallery videos={videos} />;
+  return (
+    <GalleryContainer>
+      <VideoGallery videos={videos} />
+    </GalleryContainer>
+  );
 }

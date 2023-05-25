@@ -1,6 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Video from '../components/Video';
 import { useQuery } from '@tanstack/react-query';
+
+export function GalleryContainer({ children }) {
+  return (
+    <div className="w-8/12 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-0">
+      {children}
+    </div>
+  );
+}
 
 export function useSearchedListQuery() {
   return useQuery(
@@ -14,6 +22,7 @@ export function useSearchedListQuery() {
           thumbnail: item.snippet.thumbnails.default.url,
           title: item.snippet.title,
           channelTitle: item.snippet.channelTitle,
+          channelId: item.snippet.channelId,
           time: item.snippet.publishedAt,
         };
         return video;
@@ -31,13 +40,14 @@ export function usePopularListQuery() {
   return useQuery(
     ['popular'],
     async () => {
-      const data = await fetch(`data/popular.json`).then((res) => res.json());
+      const data = await fetch(`/data/popular.json`).then((res) => res.json());
       const popularList = data.items.map((item) => {
         const video = {
           id: item.id,
           thumbnail: item.snippet.thumbnails.default.url,
           title: item.snippet.title,
           channelTitle: item.snippet.channelTitle,
+          channelId: item.snippet.channelId,
           time: item.snippet.publishedAt,
         };
         return video;
@@ -52,12 +62,12 @@ export function usePopularListQuery() {
 
 export default function VideoGallery({ videos }) {
   return (
-    <div className="w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-2">
+    <>
       {videos.map((video) => (
         <div className="flex" key={video.id}>
           <Video video={video} />
         </div>
       ))}
-    </div>
+    </>
   );
 }
