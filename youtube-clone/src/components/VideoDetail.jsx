@@ -29,19 +29,15 @@ export default function VideoDetail() {
   if (error) return <p>{error.message}</p>;
 
   return (
-    <div>
-      <section>
-        <iframe
-          width="790"
-          height="444"
-          src={`https://www.youtube.com/embed/${videoId}`}
-          // title="말이 필요없다; 중간 이상가는 여름 남친룩 모음집"
-          frameBorder="0"
-          allowFullScreen></iframe>
-        <h1>{data.title}</h1>
-        <h2>{channel}</h2>
-        <p>{data.description}</p>
-      </section>
-    </div>
+    <section className="flex-none w-2/4 mr-1">
+      <iframe
+        src={`https://www.youtube.com/embed/${videoId}`}
+        // title="말이 필요없다; 중간 이상가는 여름 남친룩 모음집"
+        allowFullScreen
+        className="w-full h-96"></iframe>
+      <h1>{data.title}</h1>
+      <h2>{channel}</h2>
+      <p>{data.description}</p>
+    </section>
   );
 }

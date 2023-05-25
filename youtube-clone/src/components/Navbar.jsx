@@ -20,7 +20,7 @@ export default function Navbar() {
   }
 
   return (
-    <div className="flex justify-between w-8/12 text-2xl border-b border-black">
+    <div className="flex justify-between w-8/12 text-4xl border-b border-black">
       <Link to="/" className="flex flex-none justify-center items-center mr-4">
         <FaYoutube className="text-red-700" />
         <h1>Youtube</h1>

@@ -11,7 +11,7 @@ export function GalleryContainer({ children }) {
 }
 
 export function RelatedGalleryContainer({ children }) {
-  return <div className="grid-cols-1">{children}</div>;
+  return <div className="flex-none w-1/6">{children}</div>;
 }
 
 export function useSearchedListQuery() {
