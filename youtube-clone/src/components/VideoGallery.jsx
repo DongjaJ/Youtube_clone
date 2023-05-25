@@ -10,6 +10,10 @@ export function GalleryContainer({ children }) {
   );
 }
 
+export function RelatedGalleryContainer({ children }) {
+  return <div className="grid-cols-1">{children}</div>;
+}
+
 export function useSearchedListQuery() {
   return useQuery(
     ['search'],

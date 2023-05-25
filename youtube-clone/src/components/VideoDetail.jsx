@@ -36,8 +36,8 @@ export default function VideoDetail() {
           height="444"
           src={`https://www.youtube.com/embed/${videoId}`}
           // title="말이 필요없다; 중간 이상가는 여름 남친룩 모음집"
-          frameborder="0"
-          allowfullscreen></iframe>
+          frameBorder="0"
+          allowFullScreen></iframe>
         <h1>{data.title}</h1>
         <h2>{channel}</h2>
         <p>{data.description}</p>
