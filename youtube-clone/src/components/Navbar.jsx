@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function Navbar() {
   return (
-    <div>
+    <div className="flex">
       <Link to="/">
         {/* <img></img> */}
         <h1>Youtube</h1>
