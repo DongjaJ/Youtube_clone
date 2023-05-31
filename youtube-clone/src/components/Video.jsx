@@ -10,6 +10,8 @@ export default function Video({ video }) {
     setVideoInfo({ title, channelId });
   }
 
+  makeTimeTamplate(time);
+
   return (
     <div className="w-full">
       <Link to={`/videos/watch/${id}`} onClick={handleClick}>
@@ -18,8 +20,47 @@ export default function Video({ video }) {
       <section className="channel-info">
         <h2 className="text-white font-bold">{title}</h2>
         <h3 className="text-slate-400">{channelTitle}</h3>
-        <p className="text-slate-400">{time}</p>
+        <p className="text-slate-400">{makeTimeTamplate(time)}</p>
       </section>
     </div>
   );
+}
+
+function makeTimeTamplate(publishedTime) {
+  const now = new Date();
+  const publishedDate = new Date(publishedTime);
+  const diffTime = now.getTime() - publishedDate.getTime();
+  const dateDifferent = isDifferentDate(diffTime);
+  if (dateDifferent) {
+    console.log(dateDifferent);
+    return dateDifferent;
+  }
+  const timeDifferent = isDifferentTime(diffTime);
+  if (timeDifferent) {
+    console.log(timeDifferent);
+    return timeDifferent;
+  }
+  return '방금전';
+}
+
+function isDifferentDate(diffTime) {
+  const diffYear = parseInt(diffTime / (1000 * 60 * 60 * 24 * 30 * 12));
+  const diffMonth = parseInt(diffTime / (1000 * 60 * 60 * 24 * 30));
+  const diffDay = parseInt(diffTime / (1000 * 60 * 60 * 24));
+
+  if (diffYear) return `${diffYear}년 전`;
+  if (diffMonth) return `${diffMonth}개월 전`;
+  if (diffDay) return `${diffDay}일 전`;
+  return null;
+}
+
+function isDifferentTime(diffTime) {
+  const diffHour = parseInt(diffTime / (1000 * 60 * 60));
+  const diffMinuite = parseInt(diffTime / (1000 * 60));
+  const diffSecond = parseInt(diffTime / 1000);
+
+  if (diffHour) return `${diffHour}시간 전`;
+  if (diffMinuite) return `${diffMinuite}분 전`;
+  if (diffSecond) return `${diffSecond}초 전`;
+  return null;
 }
