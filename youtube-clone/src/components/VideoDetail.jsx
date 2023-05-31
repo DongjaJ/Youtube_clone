@@ -14,7 +14,7 @@ export default function VideoDetail() {
   if (error) return <p>{error.message}</p>;
 
   return (
-    <section className="w-8/12 md:w-8/12">
+    <section className="w-8/12 md:w-6/12">
       <iframe
         src={`https://www.youtube.com/embed/${videoId}`}
         allowFullScreen
