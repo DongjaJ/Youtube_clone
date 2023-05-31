@@ -1,6 +1,9 @@
 # Youtube_clone
 Cloning Project of Youtube
 
+## 링크
+https://melodious-tapioca-105551.netlify.app
+
 ## 기술 스택
 
 |Types|Techs|
