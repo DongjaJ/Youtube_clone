@@ -23,7 +23,7 @@ export default function Navbar() {
     <div className="flex justify-between w-8/12 text-4xl border-b border-black">
       <Link to="/" className="flex flex-none justify-center items-center mr-4">
         <FaYoutube className="text-red-700" />
-        <h1>Youtube</h1>
+        <h1 className="text-white font-bold">Youtube</h1>
       </Link>
       <form
         onSubmit={handleSubmit}
@@ -33,7 +33,7 @@ export default function Navbar() {
           placeholder="search..."
           onChange={handleChange}
           value={content || ''}
-          className="flex-initial w-6/12 bg-black text-white"
+          className="basis-full bg-black text-white outline-none"
         />
         <Link to={`/videos/${content}`} className="flex items-center">
           <button className="flex-none">

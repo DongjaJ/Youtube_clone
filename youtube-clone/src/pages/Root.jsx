@@ -1,15 +1,15 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Navbar from '../components/Navbar';
-import ChannelProvider from '../context/ChannelContext';
+import VideoContextProvider from '../context/VideoContext';
 
 export default function Root() {
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center bg-slate-900">
       <Navbar />
-      <ChannelProvider>
+      <VideoContextProvider>
         <Outlet />
-      </ChannelProvider>
+      </VideoContextProvider>
     </div>
   );
 }

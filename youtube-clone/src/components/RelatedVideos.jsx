@@ -1,33 +1,11 @@
 import React from 'react';
 import Videogallery, { RelatedGalleryContainer } from './VideoGallery';
-import { useQuery } from '@tanstack/react-query';
+import useRelatedQuery from '../hooks/query/use-related';
+import { useParams } from 'react-router-dom';
 
 export default function RelatedVideos() {
-  const {
-    data: videos,
-    isLoading,
-    error,
-  } = useQuery(
-    ['popular'],
-    async () => {
-      const data = await fetch(`/data/related.json`).then((res) => res.json());
-      const relatedList = data.items.map((item) => {
-        const video = {
-          id: item.id.videoId,
-          thumbnail: item.snippet.thumbnails.default.url,
-          title: item.snippet.title,
-          channelTitle: item.snippet.channelTitle,
-          channelId: item.snippet.channelId,
-          time: item.snippet.publishedAt,
-        };
-        return video;
-      });
-      return relatedList;
-    },
-    {
-      staleTime: 1000 * 60 * 5,
-    }
-  );
+  const { videoId } = useParams();
+  const { data: videos, isLoading, error } = useRelatedQuery(videoId);
 
   if (isLoading) return <p>Loading...</p>;
 

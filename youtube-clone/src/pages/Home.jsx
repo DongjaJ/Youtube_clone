@@ -1,6 +1,6 @@
 import React from 'react';
 import VideoGallery, { GalleryContainer } from '../components/VideoGallery';
-import { usePopularListQuery } from '../components/VideoGallery';
+import usePopularListQuery from '../hooks/query/use-popular';
 
 export default function Home() {
   const { data: videos, isLoading, error } = usePopularListQuery();
@@ -9,8 +9,10 @@ export default function Home() {
 
   if (error) return <p>{error}</p>;
   return (
-    <GalleryContainer>
-      <VideoGallery videos={videos} />
-    </GalleryContainer>
+    <div className="flex justify-center">
+      <GalleryContainer>
+        <VideoGallery videos={videos} />
+      </GalleryContainer>
+    </div>
   );
 }

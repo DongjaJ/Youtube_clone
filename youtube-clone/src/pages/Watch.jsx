@@ -4,7 +4,7 @@ import RelatedVideos from '../components/RelatedVideos';
 
 export default function Watch() {
   return (
-    <div className="w-full flex flex-col md:flex-row justify-center mt-2">
+    <div className="flex flex-col justify-center md:flex-row items-center md:items-start mt-2 w-full">
       <VideoDetail />
       <RelatedVideos />
     </div>
