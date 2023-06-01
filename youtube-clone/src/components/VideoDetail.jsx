@@ -2,26 +2,26 @@ import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import useChannelQuery from '../hooks/query/use-channel';
 import { VideoContext } from '../context/VideoContext';
+import Channel from './Channel';
 
-export default function VideoDetail() {
-  const { videoInfo } = useContext(VideoContext);
-  console.log(videoInfo);
-  const { videoId } = useParams();
-  const { data, isLoading, error } = useChannelQuery(videoInfo.channelId);
-
-  if (isLoading) return <p>Loading...</p>;
-
-  if (error) return <p>{error.message}</p>;
+export default function VideoDetail({ video }) {
+  const { title, channelId, channelTitle, description } = video.snippet;
+  console.log(video.snippet);
 
   return (
-    <section className="w-8/12 md:w-6/12">
+    <section className="basis-4/6">
       <iframe
-        src={`https://www.youtube.com/embed/${videoId}`}
+        width="100%"
+        height="640"
+        src={`https://www.youtube.com/embed/${video.id}`}
         allowFullScreen
-        className="w-full h-96"></iframe>
-      <h1 className="text-white font-bold">{videoInfo.title}</h1>
-      <h2 className="text-slate-400">{data.title}</h2>
-      <p className="text-slate-400">{data.description}</p>
+        title={title}
+      />
+      <div className="p-8">
+        <h1 className="text-xl font-bold">{title}</h1>
+        <Channel id={channelId} name={channelTitle}></Channel>
+        <pre className="white-pre-wrap">{description}</pre>
+      </div>
     </section>
   );
 }

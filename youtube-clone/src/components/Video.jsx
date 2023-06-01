@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { VideoContext } from '../context/VideoContext';
 
-export default function Video({ video }) {
-  const { id, thumbnail, title, channelTitle, time, channelId } = video;
+export default function Video({ video, type }) {
+  const { thumbnails, title, channelTitle, time, channelId, publishedAt } =
+    video.snippet;
   const { setVideoInfo } = useContext(VideoContext);
+  const navigate = useNavigate();
+  const isList = type === 'list';
 
   function handleClick() {
     setVideoInfo({ title, channelId });
@@ -13,16 +16,22 @@ export default function Video({ video }) {
   makeTimeTamplate(time);
 
   return (
-    <div className="w-full">
-      <Link to={`/videos/watch/${id}`} onClick={handleClick}>
-        <img src={thumbnail} alt="thumbnail" className="w-full" />
-      </Link>
+    <li
+      className={isList ? 'flex gap-1 m-2' : ''}
+      onClick={() =>
+        navigate(`/videos/watch/${video.id}`, { state: { video } })
+      }>
+      <img
+        src={thumbnails.medium.url}
+        alt="thumbnail"
+        className={isList ? 'w-60 mr-2' : 'w-full'}
+      />
       <section className="channel-info">
         <p className="font-bold my-2 line-clamp-2">{title}</p>
         <p className="text-sm opacity-80">{channelTitle}</p>
-        <p className="text-sm opacity-80">{makeTimeTamplate(time)}</p>
+        <p className="text-sm opacity-80">{makeTimeTamplate(publishedAt)}</p>
       </section>
-    </div>
+    </li>
   );
 }
 
@@ -31,15 +40,9 @@ function makeTimeTamplate(publishedTime) {
   const publishedDate = new Date(publishedTime);
   const diffTime = now.getTime() - publishedDate.getTime();
   const dateDifferent = isDifferentDate(diffTime);
-  if (dateDifferent) {
-    console.log(dateDifferent);
-    return dateDifferent;
-  }
+  if (dateDifferent) return dateDifferent;
   const timeDifferent = isDifferentTime(diffTime);
-  if (timeDifferent) {
-    console.log(timeDifferent);
-    return timeDifferent;
-  }
+  if (timeDifferent) return timeDifferent;
   return '방금전';
 }
 

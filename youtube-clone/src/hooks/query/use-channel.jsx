@@ -6,15 +6,11 @@ export default function useChannelQuery(channelId) {
   return useQuery(
     ['channel', channelId],
     async () => {
-      // const URI = `/data/channel.json`;
-      const URI = `https://youtube.googleapis.com/youtube/v3/channels?part=snippet&id=${channelId}&key=${API_KEY}`;
-      const data = await fetch(URI).then((res) => res.json());
-      console.log(data.items[0]);
-      const channelInfo = {
-        title: data.items[0].snippet.title,
-        description: data.items[0].snippet.description,
-      };
-      return channelInfo;
+      const URI = `/data/channel.json`;
+      // const URI = `https://youtube.googleapis.com/youtube/v3/channels?part=snippet&id=${channelId}&key=${API_KEY}`;
+      return fetch(URI)
+        .then((res) => res.json())
+        .then((data) => data.items[0].snippet.thumbnails.default.url);
     },
     {
       staleTime: 1000 * 60 * 5,
