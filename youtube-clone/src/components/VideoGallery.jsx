@@ -17,12 +17,12 @@ export function RelatedGalleryContainer({ children }) {
 
 export default function VideoGallery({ videos }) {
   return (
-    <>
+    <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:gird-cols-4 xl:grid-cols-5 gap-2 gap-y-4">
       {videos.map((video) => (
         <div key={video.id}>
           <Video video={video} />
         </div>
       ))}
-    </>
+    </ul>
   );
 }

@@ -18,9 +18,9 @@ export default function Video({ video }) {
         <img src={thumbnail} alt="thumbnail" className="w-full" />
       </Link>
       <section className="channel-info">
-        <h2 className="text-white font-bold">{title}</h2>
-        <h3 className="text-slate-400">{channelTitle}</h3>
-        <p className="text-slate-400">{makeTimeTamplate(time)}</p>
+        <p className="font-bold my-2 line-clamp-2">{title}</p>
+        <p className="text-sm opacity-80">{channelTitle}</p>
+        <p className="text-sm opacity-80">{makeTimeTamplate(time)}</p>
       </section>
     </div>
   );
