@@ -1,12 +1,8 @@
-import React, { useContext } from 'react';
-import { useParams } from 'react-router-dom';
-import useChannelQuery from '../hooks/query/use-channel';
-import { VideoContext } from '../context/VideoContext';
+import React from 'react';
 import Channel from './Channel';
 
 export default function VideoDetail({ video }) {
   const { title, channelId, channelTitle, description } = video.snippet;
-  console.log(video.snippet);
 
   return (
     <section className="basis-4/6">

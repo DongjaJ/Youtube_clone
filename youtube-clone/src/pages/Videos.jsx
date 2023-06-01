@@ -1,5 +1,4 @@
 import React from 'react';
-import VideoGallery from '../components/VideoGallery';
 import useSearchedListQuery from '../hooks/query/use-search';
 import { useParams } from 'react-router-dom';
 import Video from '../components/Video';

@@ -3,7 +3,6 @@ import useChannelQuery from '../hooks/query/use-channel';
 
 export default function Channel({ id, name }) {
   const { data: url } = useChannelQuery(id);
-  console.log(url);
   return (
     <div className="flex my-4 mb-8 items-center">
       {url && (

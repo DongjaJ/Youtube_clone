@@ -1,5 +1,4 @@
 import React from 'react';
-import VideoGallery from '../components/VideoGallery';
 import usePopularListQuery from '../hooks/query/use-popular';
 import Video from '../components/Video';
 

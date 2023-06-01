@@ -1,20 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { VideoContext } from '../context/VideoContext';
 
 export default function Video({ video, type }) {
-  const { thumbnails, title, channelTitle, time, channelId, publishedAt } =
-    video.snippet;
-  const { setVideoInfo } = useContext(VideoContext);
+  const { thumbnails, title, channelTitle, publishedAt } = video.snippet;
   const navigate = useNavigate();
   const isList = type === 'list';
-
-  function handleClick() {
-    setVideoInfo({ title, channelId });
-  }
-
-  makeTimeTamplate(time);
-
   return (
     <li
       className={isList ? 'flex gap-1 m-2' : ''}

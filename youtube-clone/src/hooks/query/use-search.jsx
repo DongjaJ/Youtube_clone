@@ -6,8 +6,8 @@ export default function useSearchedListQuery(keyword) {
     ['search', keyword],
     async () => {
       console.log('fetching...');
-      const URI = `/data/search.json`;
-      // const URI = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${keyword}&key=${API_KEY}`;
+      // const URI = `/data/search.json`;
+      const URI = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${keyword}&key=${API_KEY}`;
       return fetch(URI)
         .then((res) => res.json())
         .then((data) =>
@@ -15,7 +15,7 @@ export default function useSearchedListQuery(keyword) {
         );
     },
     {
-      staleTime: 1000 * 60 * 5,
+      staleTime: 1000 * 60,
     }
   );
 }
