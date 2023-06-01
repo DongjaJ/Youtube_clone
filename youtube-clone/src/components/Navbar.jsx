@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { FaYoutube, FaSearch } from 'react-icons/fa';
-import { useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 
 export default function Navbar() {
   const { keyword } = useParams();
-  const [content, setContent] = useState(keyword);
+  const [content, setContent] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
-    setContent(keyword);
+    setContent(keyword || '');
   }, [keyword]);
 
   function handleChange(e) {
@@ -17,30 +17,29 @@ export default function Navbar() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    navigate(`videos/${content}`);
   }
 
   return (
-    <div className="flex justify-between w-8/12 text-4xl border-b border-black">
+    <header className="flex w-full text-2xl p-4 border-b border-zinc-600 mb-4">
       <Link to="/" className="flex flex-none justify-center items-center mr-4">
-        <FaYoutube className="text-red-700" />
-        <h1 className="text-white font-bold">Youtube</h1>
+        <FaYoutube className="text-4xl text-brand" />
+        <h1 className="text-3xl font-bold ml-2">Youtube</h1>
       </Link>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-auto justify-center items-center">
+        className="flex w-full justify-center items-center">
         <input
           type="text"
-          placeholder="search..."
+          placeholder="Search..."
           onChange={handleChange}
-          value={content || ''}
-          className="basis-full bg-black text-white outline-none"
+          value={content}
+          className="w-7/12 p-2 bg-black outline-none"
         />
-        <Link to={`/videos/${content}`} className="flex items-center">
-          <button className="flex-none">
-            <FaSearch className="text-white bg-gray-500" />
-          </button>
-        </Link>
+        <button className="bg-zinc-600 p-3">
+          <FaSearch />
+        </button>
       </form>
-    </div>
+    </header>
   );
 }

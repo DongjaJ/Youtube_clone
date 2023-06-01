@@ -5,7 +5,7 @@ import VideoContextProvider from '../context/VideoContext';
 
 export default function Root() {
   return (
-    <div className="flex flex-col justify-center items-center bg-slate-900">
+    <div className="flex flex-col justify-center items-center">
       <Navbar />
       <VideoContextProvider>
         <Outlet />
