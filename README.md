@@ -29,7 +29,9 @@ ex) '/data/channel/json' o 'data/channel/json' x
 - 메인페이지나 검색 페이지에서 동영상을 클릭했을 때 상세 페이지로 이동한다.
 - 상세 페이지에서 Video를 업로드한 채널의 정보를 보여줘야 하는데 이를 위해서는 ChannelID가 필요하다. 하지만 URL에서는 VideoId만 알아낼 수 있다.
 - 따라서 메인 페이지나 검색페이지에서 정보를 전달해야하는데 어떻게 전달할지 고민을 했다.
-### 첫번째 방법 : 전역적으로 Channel Context를 만들고 비디오를 클릭했을 때 Context에 비디오 정보를 저장했고 상세 페이지에서 Context에서 정보를 받아왔다
+
+### 첫번째 방법 : 전역적으로 Channel Context를 만들고 Context를 이용해 비디어 정보를 저장 및 조회했다.
+
 ChannelContext.jsx
   ```jsx
   import React, { createContext, useState } from 'react';
@@ -80,7 +82,8 @@ export default function VideoDetail() {
   ...
   }
   ```
-  ## 개선한 벙법: react-router의 navigate의 두번째 인자로 정보를 전달할 수 있다는 것을 찾아서 리팩토링했다
+  ### 개선한 방법: react-router의 navigate의 두번째 인자로 정보를 전달할 수 있다는 것을 찾아서 리팩토링했다
+  
   Video.jsx에서 video 정보 send
    ```jsx
   import React from 'react';
