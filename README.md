@@ -69,7 +69,7 @@ ChannelContext.jsx
   }
   ```
   VideoDetail.jsx
-  ```
+  ```jsx
   import React, { useContext } from 'react';
   import { ChannelContext } from '../context/ChannelContext';
   ...
