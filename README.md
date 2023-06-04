@@ -121,4 +121,7 @@ export default function VideoDetail() {
   1. fetch를 이용해 통신했는데 axios를 이용해서 통신하도록 하기
   2. api통신하는 부분을 함수로 분리하긴 했지만 깔끔하게 Youtube 클래스로 만들기
   3. mockdata를 사용하는 fakeClient와 유튜브와 실제로 통신하는 YoutubeClient를 주입빋아 사용하도록 DI와 Ioc 도입
-
+  
+  ## 사용자에게 요청받은 개선사항
+  1. 모바일에서 비율이 깨지는데 해결해주세요
+  2. 메인페이지, 검색페이지에서 상세페이지로 갈때 페이지 상단으로 포커스를 이동해주세요
